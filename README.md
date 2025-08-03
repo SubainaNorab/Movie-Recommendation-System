@@ -23,7 +23,7 @@ This is a simple movie recommendation system built using the MovieLens 100K data
 
 The system uses a user-item matrix built from the dataset, calculates cosine similarity between users, and predicts unseen ratings. It then ranks and recommends top movies based on predicted ratings. Precision@K is calculated to give a basic measure of recommendation quality.
 
-## 🛠 Technologies Used
+## Technologies Used
 
 - Python  
 - Pandas & NumPy  
