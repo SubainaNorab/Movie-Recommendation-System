@@ -39,13 +39,17 @@ def recommend_movies(selected_movie_title, user_item_matrix, user_similarity_df,
     # Weighted prediction for all movies (vectorized)
     weighted_scores = user_item_matrix.T.dot(similar_users) / (similar_users.sum() + 1e-9)
 
-    # Drop the selected movie from recommendations
+    # Fix NaN/inf values
+    weighted_scores = weighted_scores.replace([np.inf, -np.inf], np.nan).fillna(0)
+
+    # Drop the selected movie
     weighted_scores = weighted_scores.drop(selected_movie_id, errors="ignore")
 
     # Top-N movies
     top_movies = weighted_scores.sort_values(ascending=False).head(top_n)
 
     return [(movies[movies['movie_id'] == mid]['title'].values[0], score) for mid, score in top_movies.items()]
+
 
 
 def precision_at_k(selected_movie_title, user_item_matrix, user_similarity_df, movies, k=5, threshold=4):

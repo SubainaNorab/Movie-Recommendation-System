@@ -54,7 +54,7 @@ if st.button("Recommend"):
         if recommendations:
             st.subheader("📌 Top Recommendations:")
             for title, score in recommendations:
-                st.write(f"✅ **{title}** — Predicted Rating: {score:.2f}")
+                st.write(f"✅ **{title}** ")
         else:
             st.warning("No recommendations found for this movie.")
 
